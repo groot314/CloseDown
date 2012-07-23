@@ -1,0 +1,19 @@
+name: CloseDown
+main: me.groot314.CloseDown.CloseDown
+version: 1.1
+commands:
+  closedown:
+    description: Close Down the server
+    usage: /CloseDown help
+permissions:
+    closedown.*:
+        description: Gives access to all CloseDown commands
+        children:
+            closedown.login: true
+            closedown.command: true
+    closedown.login:
+        description: Allows you to Login when the server is on Close Down
+        default: op
+    closedown.commands:
+        description: Allows you to use the Close Down commands
+        default: op
