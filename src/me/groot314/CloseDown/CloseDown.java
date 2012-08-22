@@ -23,7 +23,7 @@ import org.bukkit.entity.Player;
 public class CloseDown extends JavaPlugin implements Listener {
     Logger log;
     
-    private int time;
+    private int time = 0;
     public String KickMsg;
     public String LoginKickMsg;
 
@@ -100,7 +100,6 @@ public class CloseDown extends JavaPlugin implements Listener {
                 if (args[0].equalsIgnoreCase("time")){
                 	if (args.length == 2){
                 		time = Integer.parseInt(args[1]);
-                		this.getConfig().set("ServerClosedDownTime", time);
                 		sender.sendMessage("Does not work yet!");
                 		return true;
                 	} else{
@@ -211,5 +210,22 @@ public class CloseDown extends JavaPlugin implements Listener {
             CloseDownBoolean = false;
         }
         return CloseDownBoolean;
+    }
+    
+    public boolean closedowntimeblooean;
+    public void closeDownTime(){
+    	
+    	//20L = one second
+    	this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
+
+    		   public void run() {
+    		       if (time == 0){
+    		    		
+    		       }
+    		       else if(time > 0){
+    		    	   time--;
+    		       }
+    		   }
+    		}, 0L, 1200L);
     }
 }
