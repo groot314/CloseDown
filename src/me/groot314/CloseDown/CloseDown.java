@@ -23,7 +23,7 @@ import org.bukkit.entity.Player;
 public class CloseDown extends JavaPlugin implements Listener {
     Logger log;
     
-    
+    private int time;
     public String KickMsg;
     public String LoginKickMsg;
 
@@ -31,12 +31,12 @@ public class CloseDown extends JavaPlugin implements Listener {
     public void onEnable() {
 
         getServer().getPluginManager().registerEvents(this, this);
-
+        
 
         //config stuff
         getConfig().options().copyDefaults(true);
         saveConfig();
-
+        
         KickMsg = getConfig().getString("KickMsg");
         LoginKickMsg = getConfig().getString("LoginKickMsg");
 
@@ -66,7 +66,7 @@ public class CloseDown extends JavaPlugin implements Listener {
 
         }
     }
-
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         Player player = null;
@@ -97,6 +97,17 @@ public class CloseDown extends JavaPlugin implements Listener {
 
                     return true;
                 }
+                if (args[0].equalsIgnoreCase("time")){
+                	if (args.length == 2){
+                		time = Integer.parseInt(args[1]);
+                		this.getConfig().set("ServerClosedDownTime", time);
+                		sender.sendMessage("Does not work yet!");
+                		return true;
+                	} else{
+                		sender.sendMessage("/closedown time <time>");
+                		return true;
+                	}
+                }
                 if (args[0].equalsIgnoreCase("help")) {
                     sender.sendMessage(ChatColor.GOLD + "CloseDown" + ChatColor.RED + "---------------------------");
                     sender.sendMessage(ChatColor.GOLD + "/closedown help - View this Help Message");
@@ -116,7 +127,7 @@ public class CloseDown extends JavaPlugin implements Listener {
                     return true;
                 }
 
-                if (args.length > 2) {
+                if (args.length > 3) {
                     return false;
                 }
             }

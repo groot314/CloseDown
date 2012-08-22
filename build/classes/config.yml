@@ -2,3 +2,4 @@
 KickMsg: The server is now Closed Down
 LoginKickMsg: The server is Closed Down please try logging in later
 ServerClosedDown: false
+ServerClosedDownTime:
