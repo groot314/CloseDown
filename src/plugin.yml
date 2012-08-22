@@ -1,6 +1,6 @@
 name: CloseDown
 main: me.groot314.CloseDown.CloseDown
-version: 1.1
+version: 1.2
 commands:
   closedown:
     description: Close Down the server
