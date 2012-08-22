@@ -36,6 +36,7 @@ public class CloseDown extends JavaPlugin implements Listener {
         //config stuff
         getConfig().options().copyDefaults(true);
         saveConfig();
+        closeDownTime();
         
         KickMsg = getConfig().getString("KickMsg");
         LoginKickMsg = getConfig().getString("LoginKickMsg");
@@ -53,7 +54,7 @@ public class CloseDown extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
 
-        if (CloseDownConfigBoolean() == true) {
+        if (CloseDownConfigBoolean() || closedowntimeblooean == true) {
             if (event.getPlayer().hasPermission("closedown.login") == false) {
 
                 event.disallow(PlayerLoginEvent.Result.KICK_OTHER, LoginKickMsg);
@@ -220,10 +221,11 @@ public class CloseDown extends JavaPlugin implements Listener {
 
     		   public void run() {
     		       if (time == 0){
-    		    		
+    		    		closedowntimeblooean = false;
     		       }
     		       else if(time > 0){
     		    	   time--;
+    		    	   closedowntimeblooean = true;
     		       }
     		   }
     		}, 0L, 1200L);
